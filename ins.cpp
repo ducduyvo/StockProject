@@ -2,6 +2,7 @@
 #define INS_H
 
 #include "ins.h"
+#include <type_traits>
 #endif
 
 /*
@@ -39,7 +40,38 @@ void Instruction::printInstruction()
 	cout << "****************************************" << endl
 		 << endl;
 }
-
+template <typename T>
+// Function for getting right value
+T run_function(string message, string name, T number)
+{
+	while (true)
+	{
+		cout << message;
+		cin >> number;
+		if (cin.fail())
+		{
+			if (is_same<T, int>::value)
+			{
+				cout << "The " << name << " must be integer!" << endl;
+			}
+			else if (is_same<T, float>::value)
+			{
+				cout << "The " << name << " must be float!" << endl;
+			}
+			else
+			{
+				cout << "The input is not correct!";
+			}
+			cin.clear();										 // Clear the error flag on cin
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
+		}
+		else
+		{
+			break;
+		}
+	}
+	return number;
+}
 // Function to choose option for main program
 void Instruction::handleCommand()
 {
@@ -54,42 +86,10 @@ void Instruction::handleCommand()
 			string item;
 			cout << "What item: ";
 			getline(cin, item);
-			float price;
-			int amount;
-			while (true)
-			{
-				cout << "Enter price (float): ";
-				cin >> price;
-
-				// Check boundary
-				if (cin.fail())
-				{
-					cout << "The price must be a float!" << endl;
-					cin.clear(); // Clear the error flag on cin
-					cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
-				}
-				else
-				{
-					break;
-				}
-			}
-			while (true)
-			{
-				cout << "Enter amount (integer): ";
-				cin >> amount;
-
-				// Check boundary
-				if (cin.fail())
-				{
-					cout << "The amount must be an integer!" << endl;
-					cin.clear();
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				}
-				else
-				{
-					break;
-				}
-			}
+			float price = 0.0;
+			int amount = 0;
+			price = run_function("Enter price (float): ", "price", price);
+			amount = run_function("Enter amount (integer): ", "amount", amount);
 			stock->addItem(item, price, amount); // Add all information of an item to an array
 			printInstruction();
 		}
@@ -99,24 +99,8 @@ void Instruction::handleCommand()
 			cout << "What item: ";
 			string item;
 			getline(cin, item);
-			int number;
-			while (true)
-			{
-				cout << "Enter amount you want to sell: ";
-				cin >> number;
-
-				// Check boundary
-				if (cin.fail())
-				{
-					cout << "The amount must be an integer!" << endl;
-					cin.clear();
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				}
-				else
-				{
-					break;
-				}
-			}
+			int number = 0;
+			number = run_function("Enter amount you want to sell: ", "number", number);
 			stock->Sell(item, number); // Sell an item with particular amount
 			this->printInstruction();
 		}
@@ -125,24 +109,8 @@ void Instruction::handleCommand()
 			cout << "What item: ";
 			string item;
 			getline(cin, item);
-			int number;
-			while (true)
-			{
-				cout << "Enter amount you want to replenish: ";
-				cin >> number;
-
-				// Check boundary
-				if (cin.fail())
-				{
-					cout << "The amount must be an integer!" << endl;
-					cin.clear();
-					cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				}
-				else
-				{
-					break;
-				}
-			}
+			int number = 0;
+			number = run_function("Enter amount you want to sell: ", "number", number);
 			stock->Replenish(item, number); // Replenish an item with particular amount
 			this->printInstruction();
 		}
@@ -205,7 +173,6 @@ void Instruction::handleCommand()
 			ofstream ofs("myStock.txt", ios::out | ios::trunc); // Clear the content in the file
 			cout << "The disk is cleared.";
 			this->printInstruction();
-
 		}
 		else if (command == "x") // Exit the program function
 		{

@@ -40,6 +40,7 @@ void Instruction::printInstruction()
 	cout << "****************************************" << endl
 		 << endl;
 }
+
 template <typename T>
 // Function for getting right value
 T run_function(string message, string name, T number)
@@ -50,11 +51,11 @@ T run_function(string message, string name, T number)
 		cin >> number;
 		if (cin.fail())
 		{
-			if (is_same<T, int>::value)
+			if (is_same<T, int>::value) // Check number is integer or not
 			{
 				cout << "The " << name << " must be integer!" << endl;
 			}
-			else if (is_same<T, float>::value)
+			else if (is_same<T, float>::value) // Check number is float or not
 			{
 				cout << "The " << name << " must be float!" << endl;
 			}
@@ -72,6 +73,7 @@ T run_function(string message, string name, T number)
 	}
 	return number;
 }
+
 // Function to choose option for main program
 void Instruction::handleCommand()
 {

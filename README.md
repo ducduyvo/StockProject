@@ -1,5 +1,4 @@
 # StockProject
-Stock Project for cpp
 The program stores following information about each item:
  Name of item
  Price of item

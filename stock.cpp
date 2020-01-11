@@ -69,7 +69,7 @@ void Stock::Replenish(string name, int n)
 	map<string, Item>::iterator find;
 	find = list->find(name);
 	
-	// Add the item to map member
+	// Add the number of item to map member
 	if (find != list->end())
 	{
 		find->second.add(n);

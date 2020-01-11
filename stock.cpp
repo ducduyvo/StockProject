@@ -80,7 +80,7 @@ void Stock::Replenish(string name, int n)
 	}
 }
 
-// Clear the stock
+// Clear or reset the stock
 void Stock::Clear()
 {
 	list->clear();

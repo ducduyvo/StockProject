@@ -21,7 +21,7 @@ Instruction::~Instruction()
 	delete stock;
 }
 
-// Print menu function
+// Guidex all the option for user 
 void Instruction::printInstruction()
 {
 	cout << "\n";

@@ -51,7 +51,7 @@ float Item::sell(int n)
 	{
 		m_amount = m_amount - n;
 		m_sold = m_sold + n;
-		float money = m_price * n;
+		float money = m_price * n; // The amount of money can get after solding 
 		cout << n << " " << m_name << " are sold." << endl;
 		return money;
 	}

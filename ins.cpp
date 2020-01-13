@@ -49,7 +49,7 @@ T run_function(string message, string name, T number)
 	{
 		cout << message;
 		cin >> number;
-		if (cin.fail())
+		if (cin.fail()) // detects whether the value entered fits the value defined in the variable
 		{
 			if (is_same<T, int>::value) // Check number is integer or not
 			{

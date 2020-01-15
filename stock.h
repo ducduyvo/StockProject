@@ -22,7 +22,7 @@ public:
 	void printList();
 	void Clear();
 	friend ostream &operator<<(ostream &out, const Stock &s);
-	friend istream &operator>>(istream &in, Stock &i);
+	friend istream &operator>>(istream &in, Stock &s);
 
 private:
 	float revenue;

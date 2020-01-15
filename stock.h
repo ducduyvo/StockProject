@@ -15,8 +15,6 @@ class Stock
 public:
 	Stock();
 	~Stock();
-	//void saveMoney();
-	//void loadMoney();
 	void addItem(string name, float price, int amount);
 	void Replenish(string i, int n);
 	void Sell(string i, int n);

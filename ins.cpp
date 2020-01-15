@@ -3,8 +3,9 @@
 
 #include "ins.h"
 #include <type_traits>
+#include <sstream>
 #endif
-
+#define MAX 16
 /*
     Constructor
 */
@@ -48,8 +49,13 @@ T run_function(string message, string name, T number)
 	while (true)
 	{
 		cout << message;
-		cin >> number;
-		if (cin.fail()) // detects whether the value entered fits the value defined in the variable
+		//cin >> number;
+		stringstream ss;
+		string line;
+		getline(cin,line);
+		ss.str(line);
+		ss >> number;
+		if (ss.fail()) // detects whether the value entered fits the value defined in the variable
 		{
 			if (is_same<T, int>::value) // Check number is integer or not
 			{
@@ -63,13 +69,15 @@ T run_function(string message, string name, T number)
 			{
 				cout << "The input is not correct!";
 			}
-			cin.clear();										 // Clear the error flag on cin
-			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
+			ss.clear();										 // Clear the error flag on cin
+			ss.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
 		}
+	
 		else
 		{
 			break;
 		}
+	
 	}
 	return number;
 }
@@ -112,7 +120,7 @@ void Instruction::handleCommand()
 			string item;
 			getline(cin, item);
 			int number = 0;
-			number = run_function("Enter amount you want to sell: ", "number", number);
+			number = run_function("Enter amount you want to replenish: ", "number", number);
 			stock->Replenish(item, number); // Replenish an item with particular amount
 			this->printInstruction();
 		}

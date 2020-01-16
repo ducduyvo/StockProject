@@ -72,7 +72,7 @@ void Stock::Replenish(string name, int n)
 	// Add the number of item to map member
 	if (find != list->end())
 	{
-		find->second.add(n);
+		find->second.replenish(n);
 	}
 	else
 	{

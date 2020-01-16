@@ -69,7 +69,7 @@ T run_function(string message, string name, T number)
 			{
 				cout << "The input is not correct!";
 			}
-			ss.clear();										 // Clear the error flag on cin
+			ss.clear();										 // clear the error state of the stream
 			ss.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the buffer
 		}
 	
@@ -128,7 +128,7 @@ void Instruction::handleCommand()
 		else if (command == "4")
 		{
 			string item;
-			cout << "Enter keyword: ";
+			cout << "Enter the stock (keyword): ";
 			getline(cin, item);
 			stock->Find(item);
 			this->printInstruction();

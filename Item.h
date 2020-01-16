@@ -12,7 +12,7 @@ public:
 	int getAmount() const;
 	int getSold() const;
 	float sell(int n);
-	void add(int n);
+	void replenish(int n);
 	void printItem();
 	void setName(string name);
 	void setPrice(float price);

@@ -58,11 +58,11 @@ float Item::sell(int n)
 }
 
 // Replensih item function
-void Item::add(int n)
+void Item::replenish(int n)
 {
 	if (n < 0)
 	{
-		cout << "Replenish amount must bigger than 0!" << endl;
+		cout << "Replenish amount must be bigger than 0!" << endl;
 	}
 	else
 	{

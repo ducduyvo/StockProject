@@ -6,7 +6,7 @@
 
 #include <iomanip>
 #define size 15
-#define size1 20
+#define size1 40
 
 /*
     Constructor
